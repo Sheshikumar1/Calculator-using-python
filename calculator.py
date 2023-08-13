@@ -1,23 +1,23 @@
 
 from tkinter import *
-
+#function for press
 def button_press(num):
   global equation_text
   
   equation_text= equation_text+str(num)
   
   equation_label.set(equation_text)
-  
+#function for equal operation
 def equals():
   global equation_text
-  try:
+  try:#try block
     total=str(eval(equation_text))
     
     equation_label.set(total)
     
     equation_text=total
     
-  except zeroDivisionError:
+  except ZeroDivisionError:
     
     equation_label.set("arithmetic error")
     
@@ -27,13 +27,13 @@ def equals():
     equation_label.set("syntax error")
     
     equation_text=" "
-def clear():
+def clear():#function for clear
   global equation_text
   
   equation_label.set("")
   
   equation_text=" "
-  
+ #creating window 
 window=Tk()
 window.title("calculator")
 window.geometry('300x500')
@@ -44,10 +44,10 @@ equation_label = StringVar()
 
 label=Label(window,textvariable=equation_label,font=('consolas',20),bg="white",width=24,height=2)
 label.pack()
-
+#frame 
 frame=Frame(window)
 frame.pack()
-
+#buttons
 button1=Button(frame,text=1,height=4,width=5,font=('Arial',9),command=lambda: button_press(1))
 button1.grid(row=0,column=0)
 button2=Button(frame,text=2,height=4,width=5,font=('Arial',9),command=lambda: button_press(2))
@@ -82,4 +82,4 @@ equal=Button(frame,text="=",height=4,width=5,font=('Arial',9),command=equals)
 equal.grid(row=3,column=1)
 Clear=Button(window,text="Clear",height=4,width=50,font=('Arial',9),command=clear)
 Clear.pack()
-window.mainloop()
+window.mainloop()#calling mainloop
